@@ -390,7 +390,8 @@ function parseDate(line) {
   if(m) {
     const month = MONTH_MAP[m[1].slice(0,3).toLowerCase()];
     if(month!==undefined) {
-      const year = m[3]||new Date().getFullYear();
+      let year = m[3] ? +m[3] : new Date().getFullYear();
+      if(!m[3] && month > new Date().getMonth()) year -= 1;
       return `${year}-${String(month+1).padStart(2,'0')}-${m[2].padStart(2,'0')}`;
     }
   }
