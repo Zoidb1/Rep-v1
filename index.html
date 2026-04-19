@@ -19,12 +19,12 @@
     --color-text-tertiary: #888780;
     --color-text-info: #185fa5;
     --color-text-danger: #a32d2d;
+    --color-text-success: #3b6d11;
     --color-border-tertiary: rgba(0,0,0,0.12);
     --color-border-secondary: rgba(0,0,0,0.22);
     --color-border-primary: rgba(0,0,0,0.35);
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
-    --border-radius-xl: 16px;
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
@@ -41,6 +41,7 @@
       --color-text-tertiary: #888780;
       --color-text-info: #85b7eb;
       --color-text-danger: #f09595;
+      --color-text-success: #97c459;
       --color-border-tertiary: rgba(255,255,255,0.12);
       --color-border-secondary: rgba(255,255,255,0.22);
       --color-border-primary: rgba(255,255,255,0.35);
@@ -53,55 +54,26 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 1rem 0 3rem;
+    padding: 1rem 0 4rem;
   }
 
   .tracker { padding: 1rem; width: 100%; max-width: 440px; }
 
-  h1 {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color-text-primary);
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-  }
+  h1 { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1.25rem; letter-spacing: -0.01em; }
 
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--color-text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-  }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
 
-  .card {
-    background: var(--color-background-primary);
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    padding: 1rem 1.25rem;
-    margin-bottom: 12px;
-  }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px; }
 
   .date-row { display: flex; align-items: center; justify-content: space-between; }
   .date-val { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
   .date-change { font-size: 13px; color: var(--color-text-info); cursor: pointer; }
-  #date-input {
-    display: none;
-    margin-top: 8px;
-    font-size: 14px;
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
-    padding: 6px 10px;
-    background: var(--color-background-secondary);
-    color: var(--color-text-primary);
-    width: 100%;
-  }
+  #date-input { display: none; margin-top: 8px; font-size: 14px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 6px 10px; background: var(--color-background-secondary); color: var(--color-text-primary); width: 100%; }
 
   .exercise-wrap { position: relative; }
   .exercise-wrap input { width: 100%; font-size: 15px; }
 
-  input[type="text"], input[type="number"], input[type="date"] {
+  input[type="text"], input[type="number"], input[type="date"], textarea {
     background: var(--color-background-secondary);
     border: 0.5px solid var(--color-border-secondary);
     border-radius: var(--border-radius-md);
@@ -112,180 +84,74 @@
     outline: none;
     transition: border-color 0.15s;
   }
-  input:focus { border-color: var(--color-text-info); }
+  input:focus, textarea:focus { border-color: var(--color-text-info); }
 
-  .autocomplete {
-    position: absolute;
-    top: 100%;
-    left: 0; right: 0;
-    background: var(--color-background-primary);
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
-    z-index: 10;
-    overflow: hidden;
-    margin-top: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  .autocomplete div {
-    padding: 10px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    color: var(--color-text-primary);
-    border-bottom: 0.5px solid var(--color-border-tertiary);
-  }
+  textarea { width: 100%; resize: vertical; min-height: 200px; line-height: 1.5; font-size: 13px; }
+
+  .autocomplete { position: absolute; top: 100%; left: 0; right: 0; background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); z-index: 10; overflow: hidden; margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .autocomplete div { padding: 10px 12px; font-size: 14px; cursor: pointer; color: var(--color-text-primary); border-bottom: 0.5px solid var(--color-border-tertiary); }
   .autocomplete div:last-child { border-bottom: none; }
   .autocomplete div:hover { background: var(--color-background-secondary); }
 
-  .sets-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .sets-grid .col-label {
-    font-size: 11px;
-    color: var(--color-text-tertiary);
-    font-weight: 500;
-    text-align: center;
-  }
+  .sets-grid { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .sets-grid .col-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; text-align: center; }
   .sets-grid .col-label:first-child { text-align: left; }
 
-  .set-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 6px;
-  }
+  .set-row { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 8px; align-items: center; margin-bottom: 6px; }
   .set-num { font-size: 13px; color: var(--color-text-secondary); }
   .set-row input { text-align: center; font-size: 14px; width: 100%; }
-  .set-row .del-btn {
-    width: 28px; height: 28px;
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: 50%;
-    background: transparent;
-    cursor: pointer;
-    color: var(--color-text-tertiary);
-    font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.15s, color 0.15s;
-  }
-  .set-row .del-btn:hover {
-    background: var(--color-background-danger);
-    color: var(--color-text-danger);
-  }
+  .set-row .del-btn { width: 28px; height: 28px; border: 0.5px solid var(--color-border-secondary); border-radius: 50%; background: transparent; cursor: pointer; color: var(--color-text-tertiary); font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
+  .set-row .del-btn:hover { background: var(--color-background-danger); color: var(--color-text-danger); }
 
-  .add-set-btn {
-    font-size: 13px;
-    color: var(--color-text-info);
-    background: none; border: none;
-    cursor: pointer;
-    padding: 4px 0;
-    display: flex; align-items: center; gap: 6px;
-    font-family: var(--font-sans);
-  }
+  .add-set-btn { font-size: 13px; color: var(--color-text-info); background: none; border: none; cursor: pointer; padding: 4px 0; display: flex; align-items: center; gap: 6px; font-family: var(--font-sans); }
   .add-set-btn:hover { opacity: 0.7; }
-  .plus-icon {
-    width: 16px; height: 16px;
-    border: 1.5px solid var(--color-text-info);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; line-height: 1;
-    color: var(--color-text-info);
-  }
+  .plus-icon { width: 16px; height: 16px; border: 1.5px solid var(--color-text-info); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 1; color: var(--color-text-info); }
 
-  .log-btn {
-    width: 100%; padding: 13px;
-    background: var(--color-background-primary);
-    border: 0.5px solid var(--color-border-primary);
-    border-radius: var(--border-radius-lg);
-    font-size: 15px; font-weight: 500;
-    cursor: pointer;
-    color: var(--color-text-primary);
-    font-family: var(--font-sans);
-    margin-bottom: 12px;
-    transition: background 0.15s, transform 0.1s;
-  }
-  .log-btn:hover { background: var(--color-background-secondary); }
-  .log-btn:active { transform: scale(0.98); }
+  .action-btn { width: 100%; padding: 13px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-primary); border-radius: var(--border-radius-lg); font-size: 15px; font-weight: 500; cursor: pointer; color: var(--color-text-primary); font-family: var(--font-sans); margin-bottom: 12px; transition: background 0.15s, transform 0.1s; }
+  .action-btn:hover { background: var(--color-background-secondary); }
+  .action-btn:active { transform: scale(0.98); }
+  .action-btn.primary { background: var(--color-text-primary); color: var(--color-background-primary); border-color: var(--color-text-primary); }
+  .action-btn.primary:hover { opacity: 0.85; }
 
-  .history-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .export-btn {
-    font-size: 12px; color: var(--color-text-info);
-    background: none; border: none; cursor: pointer;
-    font-family: var(--font-sans);
-  }
+  .history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .export-btn { font-size: 12px; color: var(--color-text-info); background: none; border: none; cursor: pointer; font-family: var(--font-sans); }
 
-  .history-item {
-    padding: 10px 1.25rem;
-    border-bottom: 0.5px solid var(--color-border-tertiary);
-  }
+  .history-item { padding: 10px 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
   .history-item:last-child { border-bottom: none; }
   .hi-top { display: flex; justify-content: space-between; align-items: baseline; }
   .hi-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
   .hi-date { font-size: 12px; color: var(--color-text-tertiary); }
   .hi-sets { font-size: 13px; color: var(--color-text-secondary); margin-top: 3px; }
+  .hi-note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; font-style: italic; }
 
-  .toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-background-primary);
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-lg);
-    padding: 10px 20px;
-    font-size: 14px; font-weight: 500;
-    color: var(--color-text-primary);
-    opacity: 0; transition: opacity 0.2s;
-    pointer-events: none; z-index: 100;
-    white-space: nowrap;
-  }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 10px 20px; font-size: 14px; font-weight: 500; color: var(--color-text-primary); opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 100; white-space: nowrap; }
   .toast.show { opacity: 1; }
 
-  .empty-state {
-    text-align: center; padding: 2rem 0;
-    color: var(--color-text-tertiary); font-size: 13px;
-  }
+  .empty-state { text-align: center; padding: 2rem 0; color: var(--color-text-tertiary); font-size: 13px; }
 
-  .tab-row {
-    display: flex;
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .tab {
-    flex: 1; padding: 9px;
-    font-size: 13px; font-weight: 500;
-    text-align: center; cursor: pointer;
-    background: transparent; border: none;
-    color: var(--color-text-secondary);
-    font-family: var(--font-sans);
-    transition: background 0.15s, color 0.15s;
-  }
-  .tab.active {
-    background: var(--color-background-secondary);
-    color: var(--color-text-primary);
-  }
+  .tab-row { display: flex; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); overflow: hidden; margin-bottom: 16px; }
+  .tab { flex: 1; padding: 9px; font-size: 13px; font-weight: 500; text-align: center; cursor: pointer; background: transparent; border: none; color: var(--color-text-secondary); font-family: var(--font-sans); transition: background 0.15s, color 0.15s; }
+  .tab.active { background: var(--color-background-secondary); color: var(--color-text-primary); }
 
-  .last-session {
-    background: var(--color-background-secondary);
-    border-radius: var(--border-radius-md);
-    padding: 8px 12px;
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    border: 0.5px solid var(--color-border-tertiary);
-    transition: background 0.15s;
-  }
+  .last-session { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 8px 12px; margin-top: 10px; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; border: 0.5px solid var(--color-border-tertiary); transition: background 0.15s; }
   .last-session:hover { background: var(--color-background-tertiary); }
   .last-session strong { color: var(--color-text-primary); }
   .repeat-label { font-size: 11px; color: var(--color-text-info); margin-top: 3px; }
+
+  .preview-block { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px; margin-bottom: 12px; max-height: 260px; overflow-y: auto; }
+  .preview-session { margin-bottom: 12px; }
+  .preview-session:last-child { margin-bottom: 0; }
+  .preview-date { font-size: 12px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .preview-exercise { font-size: 13px; color: var(--color-text-primary); padding: 3px 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .preview-exercise:last-child { border-bottom: none; }
+  .preview-ex-name { color: var(--color-text-primary); }
+  .preview-ex-detail { color: var(--color-text-secondary); font-size: 12px; }
+  .preview-skipped { color: var(--color-text-tertiary); font-size: 12px; font-style: italic; }
+  .import-summary { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 12px; }
+  .import-summary strong { color: var(--color-text-primary); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 7px; border-radius: 20px; margin-left: 6px; }
+  .badge-skip { background: var(--color-background-tertiary); color: var(--color-text-tertiary); }
+  .badge-pb { background: var(--color-background-success); color: var(--color-text-success); }
 </style>
 </head>
 <body>
@@ -293,10 +159,12 @@
   <h1>Workout Tracker</h1>
 
   <div class="tab-row">
-    <button class="tab active" id="tab-log" onclick="showTab('log')">Log workout</button>
+    <button class="tab active" id="tab-log" onclick="showTab('log')">Log</button>
     <button class="tab" id="tab-history" onclick="showTab('history')">History</button>
+    <button class="tab" id="tab-import" onclick="showTab('import')">Import</button>
   </div>
 
+  <!-- LOG PANEL -->
   <div id="panel-log">
     <div class="card">
       <div class="section-label">Date</div>
@@ -311,8 +179,7 @@
       <div class="section-label">Exercise</div>
       <div class="exercise-wrap">
         <input type="text" id="exercise-input" placeholder="e.g. Bench Press"
-          oninput="onExerciseInput()" onblur="setTimeout(()=>closeAuto(),150)"
-          autocomplete="off" />
+          oninput="onExerciseInput()" onblur="setTimeout(()=>closeAuto(),150)" autocomplete="off" />
         <div class="autocomplete" id="autocomplete" style="display:none;"></div>
       </div>
       <div id="last-session-hint"></div>
@@ -332,9 +199,10 @@
       </button>
     </div>
 
-    <button class="log-btn" onclick="logWorkout()">Save workout</button>
+    <button class="action-btn" onclick="logWorkout()">Save workout</button>
   </div>
 
+  <!-- HISTORY PANEL -->
   <div id="panel-history" style="display:none;">
     <div class="history-header">
       <span class="section-label" style="margin:0;">Recent workouts</span>
@@ -342,16 +210,31 @@
     </div>
     <div class="card" style="padding:0;" id="history-list"></div>
   </div>
+
+  <!-- IMPORT PANEL -->
+  <div id="panel-import" style="display:none;">
+    <div class="card">
+      <div class="section-label">Paste your Notes</div>
+      <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:10px;">Open your iPhone note → select all → copy → paste below.</p>
+      <textarea id="import-text" placeholder="Apr 2&#10;&#10;* Bench - 4x10 - 40&#10;* Pec fly 4x10 - 130&#10;&#10;Apr 3&#10;&#10;* Run zone 2 - 20 mins"></textarea>
+    </div>
+
+    <button class="action-btn" onclick="previewImport()">Preview import</button>
+
+    <div id="import-preview" style="display:none;">
+      <div class="import-summary" id="import-summary"></div>
+      <div class="preview-block" id="preview-block"></div>
+      <button class="action-btn primary" onclick="confirmImport()">Import all workouts</button>
+      <button class="action-btn" onclick="cancelImport()">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 const STORAGE_KEY = 'gym_log_v1';
-
-function getData() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { return []; }
-}
+function getData() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { return []; } }
 function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
 
 function fmtDate(iso) {
@@ -374,8 +257,7 @@ function dateChanged() {
 }
 
 function getKnownExercises() {
-  const data = getData();
-  const set = new Set(data.map(e => e.exercise));
+  const set = new Set(getData().map(e => e.exercise));
   return [...set].sort();
 }
 
@@ -419,8 +301,7 @@ function repeatSession() {
   last.sets.forEach(s => addSet(s.reps, s.weight));
 }
 
-let sets = [];
-let setId = 0;
+let sets = [], setId = 0;
 
 function addSet(reps='', weight='') {
   setId++;
@@ -445,7 +326,6 @@ function removeSet(id) {
   document.getElementById(`set-${id}`).remove();
   renumberSets();
 }
-
 function renumberSets() {
   document.querySelectorAll('.set-row').forEach((r,i) => {
     const n = r.querySelector('.set-num');
@@ -480,10 +360,10 @@ function logWorkout() {
 }
 
 function showTab(tab) {
-  document.getElementById('panel-log').style.display = tab==='log' ? '' : 'none';
-  document.getElementById('panel-history').style.display = tab==='history' ? '' : 'none';
-  document.getElementById('tab-log').className = 'tab' + (tab==='log'?' active':'');
-  document.getElementById('tab-history').className = 'tab' + (tab==='history'?' active':'');
+  ['log','history','import'].forEach(t => {
+    document.getElementById(`panel-${t}`).style.display = t===tab ? '' : 'none';
+    document.getElementById(`tab-${t}`).className = 'tab' + (t===tab?' active':'');
+  });
   if(tab==='history') renderHistory();
 }
 
@@ -492,10 +372,11 @@ function renderHistory() {
   const el = document.getElementById('history-list');
   if(!data.length) { el.innerHTML = '<div class="empty-state">No workouts logged yet</div>'; return; }
   el.innerHTML = data.map(e => {
-    const sets = e.sets.map((s,i) => `${i+1}: ${s.reps}×${s.weight}lbs`).join(' · ');
+    const setsStr = e.sets.map((s,i) => `${i+1}: ${s.reps}×${s.weight}lbs`).join(' · ');
+    const note = e.note ? `<div class="hi-note">${e.note}</div>` : '';
     return `<div class="history-item">
       <div class="hi-top"><span class="hi-name">${e.exercise}</span><span class="hi-date">${fmtDate(e.date)}</span></div>
-      <div class="hi-sets">${sets}</div>
+      <div class="hi-sets">${setsStr}</div>${note}
     </div>`;
   }).join('');
 }
@@ -503,21 +384,270 @@ function renderHistory() {
 function exportCSV() {
   const data = getData();
   if(!data.length) { showToast('Nothing to export yet'); return; }
-  const rows = [['Date','Exercise','Set','Reps','Weight (lbs)']];
+  const rows = [['Date','Exercise','Set','Reps','Weight (lbs)','Note']];
   data.forEach(e => {
-    e.sets.forEach((s,i) => rows.push([e.date, e.exercise, i+1, s.reps, s.weight]));
+    e.sets.forEach((s,i) => rows.push([e.date, `"${e.exercise}"`, i+1, s.reps, s.weight, i===0 ? (e.note||'') : '']));
   });
   const csv = rows.map(r => r.join(',')).join('\n');
   const blob = new Blob([csv], {type:'text/csv'});
-  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'gym_log.csv'; a.click();
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gym_log.csv';
+  a.click();
 }
 
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── IMPORTER ────────────────────────────────────────────────────────────────
+
+let parsedSessions = [];
+
+const MONTH_MAP = {
+  jan:0, feb:1, mar:2, apr:3, may:4, jun:5,
+  jul:6, aug:7, sep:8, oct:9, nov:10, dec:11
+};
+
+function parseDate(line) {
+  // Matches: "Apr 2", "April 2", "Apr 2, 2024", "2024-04-02", "04/02/2024"
+  line = line.trim();
+
+  // ISO
+  let m = line.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+
+  // MM/DD/YYYY
+  m = line.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m) return `${m[3]}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`;
+
+  // "Apr 2" or "April 2" or "Apr 2, 2024"
+  m = line.match(/^([A-Za-z]+)\s+(\d{1,2})(?:,?\s*(\d{4}))?$/);
+  if(m) {
+    const monthKey = m[1].slice(0,3).toLowerCase();
+    const month = MONTH_MAP[monthKey];
+    if(month !== undefined) {
+      const year = m[3] || new Date().getFullYear();
+      return `${year}-${String(month+1).padStart(2,'0')}-${m[2].padStart(2,'0')}`;
+    }
+  }
+  return null;
+}
+
+function parseExerciseLine(raw) {
+  // Strip bullet characters and leading whitespace
+  let line = raw.replace(/^[\s\*\•\-\·]+/, '').trim();
+  if(!line) return null;
+
+  const notes = [];
+  let isPB = false;
+
+  // Capture and remove PB
+  if(/\bPB\b/i.test(line)) { isPB = true; line = line.replace(/\bPB\b/gi, '').trim(); }
+
+  // Capture trailing note like (8) — partial reps on last set
+  let lastSetReps = null;
+  const parenMatch = line.match(/\((\d+)\)\s*$/);
+  if(parenMatch) {
+    lastSetReps = +parenMatch[1];
+    line = line.replace(/\(\d+\)\s*$/, '').trim();
+  }
+
+  // Capture "per side" / "each side"
+  const perSide = /per side|each side/i.test(line);
+  if(perSide) { line = line.replace(/per side|each side/gi, '').trim(); notes.push('per side'); }
+
+  // Try to parse: Name - SxR - Weight  OR  Name SxR - Weight  OR  Name - duration (cardio)
+  // Weight patterns: "40", "40 lbs", "130 lbs", "20 per side"
+  // Sets×Reps: "4x10", "4x12"
+
+  // Pattern: name (sep) SxR (sep) weight
+  let exName, sets, reps, weight, cardio = false;
+
+  const sepRe = /[\-–—]/; // dash variants
+
+  // Split by dash
+  const parts = line.split(/\s*[\-–—]\s*/);
+
+  if(parts.length >= 3) {
+    // Name - SxR - Weight
+    exName = parts[0].trim();
+    const sxr = parts[1].trim();
+    const wPart = parts.slice(2).join(' ').trim();
+    const sxrMatch = sxr.match(/^(\d+)[xX×](\d+)$/);
+    if(sxrMatch) {
+      sets = +sxrMatch[1]; reps = +sxrMatch[2];
+      weight = parseFloat(wPart.replace(/[^\d.]/g,'')) || null;
+    } else {
+      // Maybe SxR is in name and weight is part[1]
+      const inlineSxr = parts[0].match(/(\d+)[xX×](\d+)/);
+      if(inlineSxr) {
+        exName = parts[0].replace(/\s*\d+[xX×]\d+\s*/,'').trim();
+        sets = +inlineSxr[1]; reps = +inlineSxr[2];
+        weight = parseFloat(parts[1].replace(/[^\d.]/g,'')) || null;
+      }
+    }
+  } else if(parts.length === 2) {
+    // Name - Weight  OR  Name SxR - Weight
+    const inlineSxr = parts[0].match(/(\d+)[xX×](\d+)/);
+    if(inlineSxr) {
+      exName = parts[0].replace(/\s*\d+[xX×]\d+\s*/,'').trim();
+      sets = +inlineSxr[1]; reps = +inlineSxr[2];
+      weight = parseFloat(parts[1].replace(/[^\d.]/g,'')) || null;
+    } else {
+      exName = parts[0].trim();
+      weight = parseFloat(parts[1].replace(/[^\d.]/g,'')) || null;
+    }
+  } else {
+    // No dash — check for inline SxR
+    const inlineSxr = line.match(/(\d+)[xX×](\d+)/);
+    if(inlineSxr) {
+      exName = line.replace(/\s*\d+[xX×]\d+\s*/,'').trim();
+      sets = +inlineSxr[1]; reps = +inlineSxr[2];
+    } else {
+      // Cardio or unknown
+      exName = line;
+      cardio = true;
+    }
+  }
+
+  if(!exName) return null;
+
+  // Clean exercise name
+  exName = exName.replace(/\s+/g,' ').trim();
+  // Remove trailing lbs/kg from name
+  exName = exName.replace(/\s*(lbs?|kg)\s*$/i,'').trim();
+
+  if(isPB) notes.push('PB');
+
+  if(cardio || (!sets && !weight)) {
+    return { exercise: exName, cardio: true, rawLine: raw.trim(), note: notes.join(', ') || null };
+  }
+
+  // Build set array
+  const setArr = [];
+  const numSets = sets || 1;
+  const numReps = reps || 0;
+  const w = weight || 0;
+
+  for(let i = 0; i < numSets; i++) {
+    const isLast = i === numSets - 1;
+    setArr.push({
+      reps: (isLast && lastSetReps !== null) ? lastSetReps : numReps,
+      weight: w
+    });
+  }
+
+  return {
+    exercise: exName,
+    sets: setArr,
+    note: notes.join(', ') || null,
+    cardio: false
+  };
+}
+
+function parseNotes(text) {
+  const lines = text.split('\n');
+  const sessions = [];
+  let currentDate = null;
+  let currentExercises = [];
+
+  for(let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    if(!trimmed) continue;
+
+    const date = parseDate(trimmed);
+    if(date) {
+      if(currentDate && currentExercises.length) {
+        sessions.push({ date: currentDate, exercises: currentExercises });
+      }
+      currentDate = date;
+      currentExercises = [];
+      continue;
+    }
+
+    // Exercise line (starts with bullet or has content)
+    if(currentDate && (trimmed.startsWith('*') || trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('·') || trimmed.match(/^\w/))) {
+      const parsed = parseExerciseLine(trimmed);
+      if(parsed) currentExercises.push(parsed);
+    }
+  }
+
+  if(currentDate && currentExercises.length) {
+    sessions.push({ date: currentDate, exercises: currentExercises });
+  }
+
+  return sessions;
+}
+
+function previewImport() {
+  const text = document.getElementById('import-text').value.trim();
+  if(!text) { showToast('Paste your notes first'); return; }
+
+  parsedSessions = parseNotes(text);
+  if(!parsedSessions.length) { showToast('No sessions found — check the format'); return; }
+
+  let totalEx = 0, skipped = 0;
+  const previewHTML = parsedSessions.map(s => {
+    const exRows = s.exercises.map(e => {
+      if(e.cardio) {
+        skipped++;
+        return `<div class="preview-exercise"><span class="preview-ex-name">${e.exercise}</span><span class="preview-skipped">cardio — skipped</span></div>`;
+      }
+      totalEx++;
+      const detail = e.sets.map((st,i) => `${st.reps}×${st.weight}lbs`).join(', ');
+      const pb = e.note && e.note.includes('PB') ? `<span class="badge badge-pb">PB</span>` : '';
+      return `<div class="preview-exercise"><span class="preview-ex-name">${e.exercise}${pb}</span><span class="preview-ex-detail">${detail}</span></div>`;
+    }).join('');
+    return `<div class="preview-session"><div class="preview-date">${fmtDate(s.date)}</div>${exRows}</div>`;
+  }).join('');
+
+  document.getElementById('import-summary').innerHTML =
+    `Found <strong>${parsedSessions.length} sessions</strong> · <strong>${totalEx} exercises</strong>${skipped ? ` · <span style="color:var(--color-text-tertiary)">${skipped} cardio entries skipped</span>` : ''}`;
+  document.getElementById('preview-block').innerHTML = previewHTML;
+  document.getElementById('import-preview').style.display = '';
+}
+
+function confirmImport() {
+  const existing = getData();
+  const existingKeys = new Set(existing.map(e => `${e.date}|${e.exercise.toLowerCase()}`));
+  let added = 0, dupes = 0;
+
+  parsedSessions.forEach(s => {
+    s.exercises.forEach(e => {
+      if(e.cardio) return;
+      const key = `${s.date}|${e.exercise.toLowerCase()}`;
+      if(existingKeys.has(key)) { dupes++; return; }
+      existing.push({
+        date: s.date,
+        exercise: e.exercise,
+        sets: e.sets,
+        note: e.note || null,
+        logged: new Date().toISOString()
+      });
+      existingKeys.add(key);
+      added++;
+    });
+  });
+
+  saveData(existing);
+  document.getElementById('import-preview').style.display = 'none';
+  document.getElementById('import-text').value = '';
+  parsedSessions = [];
+
+  const msg = dupes
+    ? `Imported ${added} exercises (${dupes} already existed)`
+    : `Imported ${added} exercises`;
+  showToast(msg);
+  setTimeout(() => showTab('history'), 800);
+}
+
+function cancelImport() {
+  document.getElementById('import-preview').style.display = 'none';
+  parsedSessions = [];
 }
 
 addSet();
